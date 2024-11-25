@@ -128,12 +128,17 @@ function FileEdit( { attributes, isSelected, setAttributes, clientId } ) {
 		}
 
 		const isPdf = newMedia.url.endsWith( '.pdf' );
+		const newDisplayPreview =
+			attributes.displayPreview !== undefined
+				? attributes.displayPreview
+				: isPdf;
+
 		setAttributes( {
 			href: newMedia.url,
 			fileName: newMedia.title,
 			textLinkHref: newMedia.url,
 			id: newMedia.id,
-			displayPreview: isPdf ? true : undefined,
+			displayPreview: newDisplayPreview,
 			previewHeight: isPdf ? 600 : undefined,
 			fileId: `wp-block-file--media-${ clientId }`,
 			blob: undefined,
