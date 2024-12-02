@@ -35,28 +35,22 @@ export default {
 	},
 };
 
-const Template = ( { onChange, ...args } ) => {
-	const [ value, setValue ] = useState( 'center center' );
+export const Default = {
+	render: function Template( { onChange, ...args } ) {
+		const [ value, setValue ] = useState( 'center center' );
 
-	return (
-		<BlockAlignmentMatrixControl
-			{ ...args }
-			value={ value }
-			onChange={ ( ...changeArgs ) => {
-				onChange( ...changeArgs );
-				setValue( ...changeArgs );
-			} }
-		/>
-	);
-};
-
-export const Default = Template.bind( {} );
-Default.args = {
-	label: 'Change matrix alignment',
-};
-
-export const Disabled = Template.bind( {} );
-Disabled.args = {
-	label: 'Disabled Alignment Control',
-	isDisabled: true,
+		return (
+			<BlockAlignmentMatrixControl
+				{ ...args }
+				value={ value }
+				onChange={ ( ...changeArgs ) => {
+					onChange( ...changeArgs );
+					setValue( ...changeArgs );
+				} }
+			/>
+		);
+	},
+	args: {
+		label: 'Change matrix alignment',
+	},
 };
