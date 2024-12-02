@@ -36,59 +36,22 @@ export default {
 	],
 };
 
-const Template = ( args ) => {
-	const [ value, setValue ] = useState( args.value );
-
-	return (
-		<HeadingLevelDropdown
-			{ ...args }
-			value={ value }
-			onChange={ ( newLevel ) => {
-				setValue( newLevel );
-				args.onChange( newLevel );
-			} }
-		/>
-	);
-};
-
-export const Default = Template.bind( {} );
-Default.args = {
-	value: 2,
-	options: [ 1, 2, 3, 4, 5, 6 ],
-};
-
-export const WithParagraphOption = Template.bind( {} );
-WithParagraphOption.args = {
-	value: 0,
-	options: [ 0, 1, 2, 3, 4 ],
-};
-
-export const LimitedOptions = Template.bind( {} );
-LimitedOptions.args = {
-	value: 3,
-	options: [ 2, 3, 4 ],
-};
-
-export const StartingAsParagraph = Template.bind( {} );
-StartingAsParagraph.args = {
-	value: 0,
-	options: [ 0, 1, 2, 3 ],
-};
-
-export const InteractiveDropdown = () => {
-	const [ selectedLevel, setSelectedLevel ] = useState( 2 );
-
-	return (
-		<div>
-			<p>
-				Selected Level:{ ' ' }
-				{ selectedLevel === 0 ? 'Paragraph' : `H${ selectedLevel }` }
-			</p>
+export const Default = {
+	render: function Template( { onChange, ...args } ) {
+		const [ value, setValue ] = useState( args.value );
+		return (
 			<HeadingLevelDropdown
-				value={ selectedLevel }
-				options={ [ 0, 1, 2, 3, 4, 5, 6 ] }
-				onChange={ ( newLevel ) => setSelectedLevel( newLevel ) }
+				{ ...args }
+				value={ value }
+				onChange={ ( ...changeArgs ) => {
+					setValue( ...changeArgs );
+					onChange( ...changeArgs );
+				} }
 			/>
-		</div>
-	);
+		);
+	},
+	args: {
+		value: 2,
+		options: [ 1, 2, 3, 4, 5, 6 ],
+	},
 };
