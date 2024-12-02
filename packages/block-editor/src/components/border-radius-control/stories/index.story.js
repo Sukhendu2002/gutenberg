@@ -11,7 +11,7 @@ import BorderRadiusControl from '../';
 /**
  * BorderRadiusControl component allows setting border radius values.
  */
-const meta = {
+export default {
 	title: 'BlockEditor/BorderRadiusControl',
 	component: BorderRadiusControl,
 	parameters: {
@@ -30,49 +30,27 @@ const meta = {
 		},
 	},
 };
-export default meta;
 
-const Template = ( initialValues ) => {
-	const [ values, setValues ] = useState( initialValues.values );
+export const Default = {
+	render: function Template( { onChange, ...args } ) {
+		const [ values, setValues ] = useState( args.values );
 
-	return (
-		<BorderRadiusControl
-			values={ values }
-			onChange={ ( newValues ) => {
-				setValues( newValues );
-				initialValues.onChange( newValues );
-			} }
-		/>
-	);
-};
-
-export const Default = Template.bind( {} );
-Default.args = {
-	values: {
-		topLeft: '10px',
-		topRight: '10px',
-		bottomLeft: '10px',
-		bottomRight: '10px',
+		return (
+			<BorderRadiusControl
+				values={ values }
+				onChange={ ( ...changeArgs ) => {
+					setValues( ...changeArgs );
+					onChange( ...changeArgs );
+				} }
+			/>
+		);
 	},
-};
-
-/**
- * This story demonstrates the control with no initial values.
- */
-export const NoInitialValues = Template.bind( {} );
-NoInitialValues.args = {
-	values: {},
-};
-
-/**
- * This story demonstrates the control with mixed values.
- */
-export const MixedUnits = Template.bind( {} );
-MixedUnits.args = {
-	values: {
-		topLeft: '10px',
-		topRight: '1em',
-		bottomLeft: '20%',
-		bottomRight: '5rem',
+	args: {
+		values: {
+			topLeft: '10px',
+			topRight: '10px',
+			bottomLeft: '10px',
+			bottomRight: '10px',
+		},
 	},
 };
