@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { isRTL } from '@wordpress/i18n';
+import { useState } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -24,14 +25,7 @@ const meta = {
 	},
 	argTypes: {
 		value: {
-			control: { type: 'select' },
-			options: ( () => {
-				const modes = [
-					'horizontal-tb',
-					isRTL() ? 'vertical-lr' : 'vertical-rl',
-				];
-				return modes;
-			} )(),
+			control: { type: null },
 			description: 'Currently selected writing mode.',
 		},
 		className: {
@@ -40,6 +34,7 @@ const meta = {
 		},
 		onChange: {
 			action: 'onChange',
+			control: { type: null },
 			description: 'Handles change in the writing mode selection.',
 		},
 	},
@@ -48,16 +43,20 @@ const meta = {
 export default meta;
 
 export const Default = {
-	args: {
-		value: 'horizontal-tb',
-	},
-};
+	render: function Template( { onChange, ...args } ) {
+		const [ value, setValue ] = useState(
+			isRTL() ? 'vertical-lr' : 'vertical-rl'
+		);
 
-/**
- * This story demonstrates the WritingModeControl component with the vertical writing mode.
- */
-export const Vertical = {
-	args: {
-		value: isRTL() ? 'vertical-lr' : 'vertical-rl',
+		return (
+			<WritingModeControl
+				{ ...args }
+				onChange={ ( ...changeArgs ) => {
+					onChange( ...changeArgs );
+					setValue( ...changeArgs );
+				} }
+				value={ value }
+			/>
+		);
 	},
 };
