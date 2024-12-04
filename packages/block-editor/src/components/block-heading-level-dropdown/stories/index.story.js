@@ -8,12 +8,12 @@ import { useState } from '@wordpress/element';
  */
 import HeadingLevelDropdown from '../';
 
-export default {
+const meta = {
 	title: 'BlockEditor/HeadingLevelDropdown',
 	component: HeadingLevelDropdown,
 	argTypes: {
 		value: {
-			control: { type: 'number', min: 0, max: 6, step: 1 },
+			control: { type: null },
 			description: 'The currently selected heading level.',
 		},
 		options: {
@@ -23,6 +23,7 @@ export default {
 		},
 		onChange: {
 			action: 'onChange',
+			control: { type: null },
 			description:
 				'Callback triggered when a new heading level is selected.',
 		},
@@ -36,9 +37,12 @@ export default {
 	],
 };
 
+export default meta;
+
 export const Default = {
 	render: function Template( { onChange, ...args } ) {
 		const [ value, setValue ] = useState( args.value );
+
 		return (
 			<HeadingLevelDropdown
 				{ ...args }
