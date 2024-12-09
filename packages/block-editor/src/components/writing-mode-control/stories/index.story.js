@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { isRTL } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 
 /**
@@ -9,9 +8,6 @@ import { useState } from '@wordpress/element';
  */
 import WritingModeControl from '../';
 
-/**
- * WritingModeControl component allows selecting writing mode.
- */
 const meta = {
 	title: 'BlockEditor/WritingModeControl',
 	component: WritingModeControl,
@@ -44,9 +40,7 @@ export default meta;
 
 export const Default = {
 	render: function Template( { onChange, ...args } ) {
-		const [ value, setValue ] = useState(
-			isRTL() ? 'vertical-lr' : 'vertical-rl'
-		);
+		const [ value, setValue ] = useState();
 
 		return (
 			<WritingModeControl
