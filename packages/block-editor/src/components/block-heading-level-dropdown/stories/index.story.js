@@ -11,30 +11,31 @@ import HeadingLevelDropdown from '../';
 const meta = {
 	title: 'BlockEditor/HeadingLevelDropdown',
 	component: HeadingLevelDropdown,
+	parameters: {
+		docs: {
+			canvas: { sourceState: 'shown' },
+			description: {
+				component:
+					'Dropdown for selecting a heading level (1 through 6) or paragraph (0).',
+			},
+		},
+	},
 	argTypes: {
 		value: {
 			control: { type: null },
-			description: 'The currently selected heading level.',
+			description: 'The chosen heading level.',
 		},
 		options: {
-			control: 'array',
-			description:
-				'An array of supported heading levels, e.g., [1, 2, 3, 4, 5, 6].',
+			control: 'check',
+			options: [ 1, 2, 3, 4, 5, 6 ],
+			description: 'An array of supported heading levels.',
 		},
 		onChange: {
 			action: 'onChange',
 			control: { type: null },
-			description:
-				'Callback triggered when a new heading level is selected.',
+			description: 'Function called with the selected value changes.',
 		},
 	},
-	decorators: [
-		( Story ) => (
-			<div style={ { padding: '20px', maxWidth: '300px' } }>
-				<Story />
-			</div>
-		),
-	],
 };
 
 export default meta;
@@ -56,6 +57,5 @@ export const Default = {
 	},
 	args: {
 		value: 2,
-		options: [ 1, 2, 3, 4, 5, 6 ],
 	},
 };
