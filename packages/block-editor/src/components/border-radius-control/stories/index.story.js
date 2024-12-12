@@ -8,10 +8,7 @@ import { useState } from '@wordpress/element';
  */
 import BorderRadiusControl from '../';
 
-/**
- * BorderRadiusControl component allows setting border radius values.
- */
-export default {
+const meta = {
 	title: 'BlockEditor/BorderRadiusControl',
 	component: BorderRadiusControl,
 	parameters: {
@@ -23,13 +20,25 @@ export default {
 		},
 	},
 	argTypes: {
-		values: { control: 'object', description: 'Border radius values.' },
+		values: {
+			control: 'object',
+			description: 'Border radius values.',
+			table: {
+				type: { summary: 'object' },
+			},
+		},
 		onChange: {
 			action: 'onChange',
+			control: { type: null },
+			table: {
+				type: { summary: 'function' },
+			},
 			description: 'Callback to handle onChange.',
 		},
 	},
 };
+
+export default meta;
 
 export const Default = {
 	render: function Template( { onChange, ...args } ) {
@@ -37,6 +46,7 @@ export const Default = {
 
 		return (
 			<BorderRadiusControl
+				{ ...args }
 				values={ values }
 				onChange={ ( ...changeArgs ) => {
 					setValues( ...changeArgs );
