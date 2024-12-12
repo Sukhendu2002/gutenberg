@@ -8,36 +8,61 @@ import { useState } from '@wordpress/element';
  */
 import BlockAlignmentMatrixControl from '../';
 
-export default {
+const meta = {
 	title: 'BlockEditor/BlockAlignmentMatrixControl',
 	component: BlockAlignmentMatrixControl,
 	parameters: {
-		layout: 'centered',
+		docs: {
+			canvas: { sourceState: 'shown' },
+			description: {
+				component:
+					'Renders a control for selecting block alignment using a matrix of alignment options.',
+			},
+		},
 	},
 	argTypes: {
 		label: {
 			control: 'text',
-			defaultValue: 'Change matrix alignment',
+			table: {
+				type: { summary: 'string' },
+				defaultValue: { summary: 'Change matrix alignment' },
+			},
 			description: 'Label for the control.',
 		},
 		onChange: {
 			action: 'onChange',
-			description: 'Function called when the value changes.',
+			control: { type: null },
+			table: {
+				type: { summary: 'function' },
+				defaultValue: { summary: '() => {}' },
+			},
+			description:
+				"Function to execute upon a user's change of the matrix state.",
 		},
 		isDisabled: {
 			control: 'boolean',
-			defaultValue: false,
-			description: 'Whether the control is disabled.',
+			table: {
+				type: { summary: 'boolean' },
+				defaultValue: { summary: 'false' },
+			},
+			description: 'Disables the control.',
 		},
 		value: {
-			description: 'The current alignment value.',
+			control: 'text',
+			table: {
+				type: { summary: 'string' },
+				defaultValue: { summary: 'center center' },
+			},
+			description: 'Value of the control.',
 		},
 	},
 };
 
+export default meta;
+
 export const Default = {
 	render: function Template( { onChange, ...args } ) {
-		const [ value, setValue ] = useState( 'center center' );
+		const [ value, setValue ] = useState();
 
 		return (
 			<BlockAlignmentMatrixControl
@@ -49,8 +74,5 @@ export const Default = {
 				} }
 			/>
 		);
-	},
-	args: {
-		label: 'Change matrix alignment',
 	},
 };
