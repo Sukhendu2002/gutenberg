@@ -48,6 +48,7 @@ const controls = (
 
 | Name       | Type       | Default                   | Description                                                                                                                              |
 | ---------- | ---------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `label`    | `string`   | `Change matrix alignment` | concise description of tool's functionality.                                                                                             |
-| `onChange` | `function` | `noop`                    | the function to execute upon a user's change of the matrix state                                                                         |
-| `value`    | `string`   | `center`                  | describes the content alignment location and can be `top`, `right`, `bottom`, `left`, `topRight`, `bottomRight`, `bottomLeft`, `topLeft` |
+| `label`    | `string`   | `Change matrix alignment` | Label for the control.											                                                                                             |
+| `onChange` | `function` | `noop`                    | Function to execute upon a user's change of the matrix state.                                                                            |
+| `value`    | `string`   | `center`                  | Describes the content alignment location and can be `center center`, `center left`, `center right`, `top center`, `top left`, `top right`, `bottom center`, `bottom left`, `bottom right`. |
+| `isDisabled` | `boolean` | `false`                   | Disables the control.                                                                                                                    |
