@@ -7,12 +7,13 @@ import clsx from 'clsx';
  * WordPress dependencies
  */
 import {
-	PanelBody,
 	Placeholder,
 	SelectControl,
 	Spinner,
 	ToggleControl,
 	VisuallyHidden,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
 import { useInstanceId } from '@wordpress/compose';
 import {
@@ -184,68 +185,153 @@ export default function CategoriesEdit( {
 	return (
 		<TagName { ...blockProps }>
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings' ) }>
+				<ToolsPanel
+					label={ __( 'Settings' ) }
+					resetAll={ () => {
+						setAttributes( {
+							displayAsDropdown: false,
+							showHierarchy: false,
+							showPostCounts: false,
+							showOnlyTopLevel: false,
+							showEmpty: false,
+							showLabel: true,
+						} );
+					} }
+				>
 					{ Array.isArray( taxonomies ) && (
-						<SelectControl
-							__nextHasNoMarginBottom
-							__next40pxDefaultSize
+						<ToolsPanelItem
+							hasValue={ () => {
+								return taxonomySlug !== 'category'
+									? taxonomySlug !== 'post_tag'
+									: taxonomySlug !== 'category';
+							} }
 							label={ __( 'Taxonomy' ) }
-							options={ taxonomies.map( ( t ) => ( {
-								label: t.name,
-								value: t.slug,
-							} ) ) }
-							value={ taxonomySlug }
-							onChange={ ( selectedTaxonomy ) =>
-								setAttributes( {
-									taxonomy: selectedTaxonomy,
-								} )
-							}
-						/>
+							onDeselect={ () => {
+								const defaultTaxonomy =
+									taxonomySlug !== 'category'
+										? 'post_tag'
+										: 'category';
+								setAttributes( { taxonomy: defaultTaxonomy } );
+							} }
+							isShownByDefault
+						>
+							<SelectControl
+								__nextHasNoMarginBottom
+								__next40pxDefaultSize
+								label={ __( 'Taxonomy' ) }
+								options={ taxonomies.map( ( t ) => ( {
+									label: t.name,
+									value: t.slug,
+								} ) ) }
+								value={ taxonomySlug }
+								onChange={ ( selectedTaxonomy ) =>
+									setAttributes( {
+										taxonomy: selectedTaxonomy,
+									} )
+								}
+							/>
+						</ToolsPanelItem>
 					) }
-					<ToggleControl
-						__nextHasNoMarginBottom
+					<ToolsPanelItem
+						hasValue={ () => displayAsDropdown !== false }
 						label={ __( 'Display as dropdown' ) }
-						checked={ displayAsDropdown }
-						onChange={ toggleAttribute( 'displayAsDropdown' ) }
-					/>
+						onDeselect={ () =>
+							setAttributes( { displayAsDropdown: false } )
+						}
+						isShownByDefault
+					>
+						<ToggleControl
+							__nextHasNoMarginBottom
+							label={ __( 'Display as dropdown' ) }
+							checked={ displayAsDropdown }
+							onChange={ toggleAttribute( 'displayAsDropdown' ) }
+						/>
+					</ToolsPanelItem>
 					{ displayAsDropdown && (
-						<ToggleControl
-							__nextHasNoMarginBottom
-							className="wp-block-categories__indentation"
+						<ToolsPanelItem
+							hasValue={ () => showLabel !== true }
 							label={ __( 'Show label' ) }
-							checked={ showLabel }
-							onChange={ toggleAttribute( 'showLabel' ) }
-						/>
+							onDeselect={ () =>
+								setAttributes( { showLabel: true } )
+							}
+							isShownByDefault
+						>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								className="wp-block-categories__indentation"
+								label={ __( 'Show label' ) }
+								checked={ showLabel }
+								onChange={ toggleAttribute( 'showLabel' ) }
+							/>
+						</ToolsPanelItem>
 					) }
-					<ToggleControl
-						__nextHasNoMarginBottom
+					<ToolsPanelItem
+						hasValue={ () => showPostCounts !== false }
 						label={ __( 'Show post counts' ) }
-						checked={ showPostCounts }
-						onChange={ toggleAttribute( 'showPostCounts' ) }
-					/>
+						onDeselect={ () =>
+							setAttributes( { showPostCounts: false } )
+						}
+						isShownByDefault
+					>
+						<ToggleControl
+							__nextHasNoMarginBottom
+							label={ __( 'Show post counts' ) }
+							checked={ showPostCounts }
+							onChange={ toggleAttribute( 'showPostCounts' ) }
+						/>
+					</ToolsPanelItem>
 					{ isHierarchicalTaxonomy && (
-						<ToggleControl
-							__nextHasNoMarginBottom
+						<ToolsPanelItem
+							hasValue={ () => showOnlyTopLevel !== false }
 							label={ __( 'Show only top level terms' ) }
-							checked={ showOnlyTopLevel }
-							onChange={ toggleAttribute( 'showOnlyTopLevel' ) }
-						/>
+							onDeselect={ () =>
+								setAttributes( { showOnlyTopLevel: false } )
+							}
+							isShownByDefault
+						>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={ __( 'Show only top level terms' ) }
+								checked={ showOnlyTopLevel }
+								onChange={ toggleAttribute(
+									'showOnlyTopLevel'
+								) }
+							/>
+						</ToolsPanelItem>
 					) }
-					<ToggleControl
-						__nextHasNoMarginBottom
+					<ToolsPanelItem
+						hasValue={ () => showEmpty !== false }
 						label={ __( 'Show empty terms' ) }
-						checked={ showEmpty }
-						onChange={ toggleAttribute( 'showEmpty' ) }
-					/>
-					{ isHierarchicalTaxonomy && ! showOnlyTopLevel && (
+						onDeselect={ () =>
+							setAttributes( { showEmpty: false } )
+						}
+						isShownByDefault
+					>
 						<ToggleControl
 							__nextHasNoMarginBottom
-							label={ __( 'Show hierarchy' ) }
-							checked={ showHierarchy }
-							onChange={ toggleAttribute( 'showHierarchy' ) }
+							label={ __( 'Show empty terms' ) }
+							checked={ showEmpty }
+							onChange={ toggleAttribute( 'showEmpty' ) }
 						/>
+					</ToolsPanelItem>
+					{ isHierarchicalTaxonomy && ! showOnlyTopLevel && (
+						<ToolsPanelItem
+							hasValue={ () => showHierarchy !== false }
+							label={ __( 'Show hierarchy' ) }
+							onDeselect={ () =>
+								setAttributes( { showHierarchy: false } )
+							}
+							isShownByDefault
+						>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={ __( 'Show hierarchy' ) }
+								checked={ showHierarchy }
+								onChange={ toggleAttribute( 'showHierarchy' ) }
+							/>
+						</ToolsPanelItem>
 					) }
-				</PanelBody>
+				</ToolsPanel>
 			</InspectorControls>
 			{ isResolving && (
 				<Placeholder icon={ pin } label={ __( 'Terms' ) }>
