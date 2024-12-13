@@ -10,11 +10,12 @@ import {
 } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
 import {
-	PanelBody,
 	Placeholder,
 	ToggleControl,
 	ToolbarButton,
 	ToolbarGroup,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { renderToString } from '@wordpress/element';
@@ -108,25 +109,41 @@ export default function TableOfContentsEdit( {
 
 	const inspectorControls = (
 		<InspectorControls>
-			<PanelBody title={ __( 'Settings' ) }>
-				<ToggleControl
-					__nextHasNoMarginBottom
+			<ToolsPanel
+				label={ __( 'Settings' ) }
+				resetAll={ () => {
+					setAttributes( {
+						onlyIncludeCurrentPage: false,
+					} );
+				} }
+			>
+				<ToolsPanelItem
+					hasValue={ () => onlyIncludeCurrentPage !== false }
 					label={ __( 'Only include current page' ) }
-					checked={ onlyIncludeCurrentPage }
-					onChange={ ( value ) =>
-						setAttributes( { onlyIncludeCurrentPage: value } )
+					onDeselect={ () =>
+						setAttributes( { onlyIncludeCurrentPage: false } )
 					}
-					help={
-						onlyIncludeCurrentPage
-							? __(
-									'Only including headings from the current page (if the post is paginated).'
-							  )
-							: __(
-									'Toggle to only include headings from the current page (if the post is paginated).'
-							  )
-					}
-				/>
-			</PanelBody>
+					isShownByDefault
+				>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={ __( 'Only include current page' ) }
+						checked={ onlyIncludeCurrentPage }
+						onChange={ ( value ) =>
+							setAttributes( { onlyIncludeCurrentPage: value } )
+						}
+						help={
+							onlyIncludeCurrentPage
+								? __(
+										'Only including headings from the current page (if the post is paginated).'
+								  )
+								: __(
+										'Toggle to only include headings from the current page (if the post is paginated).'
+								  )
+						}
+					/>
+				</ToolsPanelItem>
+			</ToolsPanel>
 		</InspectorControls>
 	);
 
