@@ -64,9 +64,9 @@ Function to execute upon a user's change of the matrix state.
 
 -   **Type:** `string`
 -   **Default:** `'center'`
--   **Options:** `center`, `center center`, `center left`, `center right`, `top center`, `top left`, `top right`, `bottom center`, `bottom left`, `bottom right`
+-   **Options:** `'center'`, `'center center'`, `'center left'`, `'center right'`, `'top center'`, `'top left'`, `'top right'`, `'bottom center'`, `'bottom left'`, `'bottom right'`
 
-Describes the content alignment location.
+Content alignment location.
 
 ### `isDisabled`
 

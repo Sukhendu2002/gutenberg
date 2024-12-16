@@ -45,7 +45,7 @@ const meta = {
 				type: { summary: 'boolean' },
 				defaultValue: { summary: 'false' },
 			},
-			description: 'Disables the control.',
+			description: 'Whether the control should be disabled.',
 		},
 		value: {
 			control: { type: null },
@@ -53,7 +53,7 @@ const meta = {
 				type: { summary: 'string' },
 				defaultValue: { summary: 'center' },
 			},
-			description: 'Value of the control.',
+			description: 'Content alignment location.',
 		},
 	},
 };
