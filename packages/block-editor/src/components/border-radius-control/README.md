@@ -40,8 +40,9 @@ The component accepts the following props:
 
 An object containing the border radius values for each corner.
 
-- Type: `Object`
-- Required: No
+- **Type:** `Object`
+- **Required:** No
+- **Default:** `{ topLeft: undefined, topRight: undefined, bottomLeft: undefined, bottomRight: undefined }`
 
 The values object has the following schema:
 
@@ -58,8 +59,9 @@ Each value should be a valid CSS border radius value (e.g., '10px', '1em').
 
 Callback function that is called when any border radius value changes.
 
-- Type: `Function`
-- Required: Yes
+- **Type:** `Function`
+- **Required:** Yes
+- **Default:** `() => {}`
 
 The function receives the updated values object as its argument.
 
