@@ -26,6 +26,11 @@ import { __, sprintf } from '@wordpress/i18n';
 import { pin } from '@wordpress/icons';
 import { useEntityRecords } from '@wordpress/core-data';
 
+/**
+ * Internal dependencies
+ */
+import { useToolsPanelDropdownMenuProps } from '../utils/hooks';
+
 export default function CategoriesEdit( {
 	attributes: {
 		displayAsDropdown,
@@ -181,6 +186,7 @@ export default function CategoriesEdit( {
 	const blockProps = useBlockProps( {
 		className: classes,
 	} );
+	const dropdownMenuProps = useToolsPanelDropdownMenuProps();
 
 	return (
 		<TagName { ...blockProps }>
@@ -197,6 +203,7 @@ export default function CategoriesEdit( {
 							showLabel: true,
 						} );
 					} }
+					dropdownMenuProps={ dropdownMenuProps }
 				>
 					{ Array.isArray( taxonomies ) && (
 						<ToolsPanelItem
