@@ -13,7 +13,7 @@
 	.components-base-control,
 	.components-radio-control {
 		&:where(:not(:last-child)) {
-			margin-bottom: $grid-unit-20;
+			margin-bottom: $grid-unit-20 !important;
 		}
 	}
 
