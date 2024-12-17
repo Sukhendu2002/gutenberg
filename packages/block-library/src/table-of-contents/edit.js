@@ -30,6 +30,7 @@ import { tableOfContents as icon } from '@wordpress/icons';
 import TableOfContentsList from './list';
 import { linearToNestedHeadingList } from './utils';
 import { useObserveHeadings } from './hooks';
+import { useToolsPanelDropdownMenuProps } from '../utils/hooks';
 
 /** @typedef {import('./utils').HeadingData} HeadingData */
 
@@ -80,7 +81,7 @@ export default function TableOfContentsEdit( {
 	);
 
 	const { replaceBlocks } = useDispatch( blockEditorStore );
-
+	const dropdownMenuProps = useToolsPanelDropdownMenuProps();
 	const headingTree = linearToNestedHeadingList( headings );
 
 	const toolbarControls = canInsertList && (
@@ -116,6 +117,7 @@ export default function TableOfContentsEdit( {
 						onlyIncludeCurrentPage: false,
 					} );
 				} }
+				dropdownMenuProps={ dropdownMenuProps }
 			>
 				<ToolsPanelItem
 					hasValue={ () => onlyIncludeCurrentPage !== false }
