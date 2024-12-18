@@ -36,9 +36,11 @@ const noop = () => {};
  * @param {Object}   props            Component props.
  * @param {string}   props.label      Label for the control. Defaults to 'Change matrix alignment'.
  * @param {Function} props.onChange   Function to execute upon change of matrix state.
- * @param {string}   props.value      Content alignment location. One of: 'center', 'center center', 'center left', 'center right', 'top center', 'top left', 'top right', 'bottom center', 'bottom left', 'bottom right'.
+ * @param {string}   props.value      Content alignment location. One of: 'center', 'center center',
+ *                                    'center left', 'center right', 'top center', 'top left',
+ *                                    'top right', 'bottom center', 'bottom left', 'bottom right'.
  * @param {boolean}  props.isDisabled Whether the control should be disabled.
- * @return {Element}                    The BlockAlignmentMatrixControl component.
+ * @return {Element}				  The BlockAlignmentMatrixControl component.
  */
 function BlockAlignmentMatrixControl( props ) {
 	const {
