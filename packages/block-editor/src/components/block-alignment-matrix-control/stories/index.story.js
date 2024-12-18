@@ -25,7 +25,7 @@ const meta = {
 			control: 'text',
 			table: {
 				type: { summary: 'string' },
-				defaultValue: { summary: 'Change matrix alignment' },
+				defaultValue: { summary: "'Change matrix alignment'" },
 			},
 			description: 'Label for the control.',
 		},
@@ -51,7 +51,7 @@ const meta = {
 			control: { type: null },
 			table: {
 				type: { summary: 'string' },
-				defaultValue: { summary: 'center' },
+				defaultValue: { summary: "'center'" },
 			},
 			description: 'Content alignment location.',
 		},
