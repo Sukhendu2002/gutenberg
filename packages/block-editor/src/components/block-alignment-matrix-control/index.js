@@ -40,7 +40,7 @@ const noop = () => {};
  *                                    'center left', 'center right', 'top center', 'top left',
  *                                    'top right', 'bottom center', 'bottom left', 'bottom right'.
  * @param {boolean}  props.isDisabled Whether the control should be disabled.
- * @return {Element}				  The BlockAlignmentMatrixControl component.
+ * @return {Element} The BlockAlignmentMatrixControl component.
  */
 function BlockAlignmentMatrixControl( props ) {
 	const {
