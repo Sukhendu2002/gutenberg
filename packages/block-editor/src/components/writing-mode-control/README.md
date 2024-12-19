@@ -3,6 +3,8 @@
 WritingModeControl is a React component that renders a UI that allows users to select text orientation (writing mode).
 The component provides a toggle group interface that allows users to switch between horizontal and vertical text orientations, with automatic RTL (Right-to-Left) support.
 
+![WritingModeControl component preview](https://github.com/user-attachments/assets/69dc0560-bcdb-47af-9219-214ff359676f)
+
 ## Usage
 
 ```jsx
@@ -36,14 +38,19 @@ A function that handles change in the writing mode selection.
 
 ### value
 
-The current writing mode value. Can be one of:
-- `'horizontal-tb'` - Horizontal top-to-bottom text
-- `'vertical-rl'` - Vertical right-to-left text (for LTR languages)
-- `'vertical-lr'` - Vertical left-to-right text (for RTL languages)
+The current writing mode value.
 
 - Type: `string`
 - Required: No
 - Default: `undefined`
+
+The writing mode values follow this schema:
+
+| Value | Description |
+| ----- | ----------- |
+| horizontal-tb | Horizontal top-to-bottom text |
+| vertical-rl | Vertical right-to-left text (for LTR languages) |
+| vertical-lr | Vertical left-to-right text (for RTL languages) |
 
 ### className
 
