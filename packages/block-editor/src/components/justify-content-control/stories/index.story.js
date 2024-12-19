@@ -56,7 +56,7 @@ const meta = {
 			description: 'Current value of the alignment setting.',
 		},
 		popoverProps: {
-			control: 'object',
+			control: { type: null },
 			table: {
 				type: { summary: 'object' },
 			},
