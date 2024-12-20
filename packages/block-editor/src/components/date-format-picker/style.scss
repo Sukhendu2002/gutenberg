@@ -1,5 +1,9 @@
 .block-editor-date-format-picker {
 	margin-bottom: $grid-unit-20;
+
+	.components-custom-select-control {
+		margin-top: $grid-unit-20;
+	}
 }
 
 .block-editor-date-format-picker__custom-format-select-control__custom-option {
