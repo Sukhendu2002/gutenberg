@@ -63,6 +63,7 @@ export default function EditorInterface( {
 		isPreviewMode,
 		showBlockBreadcrumbs,
 		documentLabel,
+		boundaryViewMode,
 	} = useSelect( ( select ) => {
 		const { get } = select( preferencesStore );
 		const { getEditorSettings, getPostTypeLabel } = select( editorStore );
@@ -77,6 +78,7 @@ export default function EditorInterface( {
 			isDistractionFree: get( 'core', 'distractionFree' ),
 			isPreviewMode: editorSettings.isPreviewMode,
 			showBlockBreadcrumbs: get( 'core', 'showBlockBreadcrumbs' ),
+			boundaryViewMode: get( 'core', 'boundaryViewMode' ),
 			documentLabel:
 				// translators: Default label for the Document in the Block Breadcrumb.
 				postTypeLabel || _x( 'Document', 'noun, breadcrumb' ),
@@ -107,6 +109,7 @@ export default function EditorInterface( {
 			className={ clsx( 'editor-editor-interface', className, {
 				'is-entity-save-view-open': !! entitiesSavedStatesCallback,
 				'is-distraction-free': isDistractionFree && ! isPreviewMode,
+				'boundary-view-mode': boundaryViewMode,
 			} ) }
 			labels={ {
 				...interfaceLabels,
