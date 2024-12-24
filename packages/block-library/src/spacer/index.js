@@ -19,6 +19,11 @@ export { metadata, name };
 
 export const settings = {
 	icon,
+	example: {
+		attributes: {
+			width: '100px',
+		},
+	},
 	transforms,
 	edit,
 	save,
