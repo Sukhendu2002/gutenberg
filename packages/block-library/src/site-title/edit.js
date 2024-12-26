@@ -130,7 +130,7 @@ export default function SiteTitleEdit( {
 					dropdownMenuProps={ dropdownMenuProps }
 				>
 					<ToolsPanelItem
-						hasValue={ () => isLink === false }
+						hasValue={ () => ! isLink }
 						label={ __( 'Make title link to home' ) }
 						onDeselect={ () => setAttributes( { isLink: true } ) }
 						isShownByDefault
