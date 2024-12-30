@@ -55,6 +55,5 @@ Callback function that is called when any border radius value changes.
 
 - **Type:** `Function`
 - **Required:** Yes
-- **Default:** `() => {}`
 
 The function receives the updated values object as its argument.
