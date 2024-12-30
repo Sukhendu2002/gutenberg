@@ -55,12 +55,4 @@ export const Default = {
 			/>
 		);
 	},
-	args: {
-		values: {
-			topLeft: '10px',
-			topRight: '10px',
-			bottomLeft: '10px',
-			bottomRight: '10px',
-		},
-	},
 };

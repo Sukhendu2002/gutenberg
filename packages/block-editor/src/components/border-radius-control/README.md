@@ -8,7 +8,7 @@
 /**
  * WordPress dependencies
  */
-import { BorderRadiusControl } from '@wordpress/block-editor';
+import { __experimentalBorderRadiusControl as BorderRadiusControl } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
 
 const MyBorderRadiusControl = () => {
@@ -26,15 +26,9 @@ const MyBorderRadiusControl = () => {
         />
     );
 };
-
-// ...
-
-<MyBorderRadiusControl />;
 ```
 
 ## Props
-
-The component accepts the following props:
 
 ### values
 
@@ -42,7 +36,7 @@ An object containing the border radius values for each corner.
 
 - **Type:** `Object`
 - **Required:** No
-- **Default:** `{ topLeft: undefined, topRight: undefined, bottomLeft: undefined, bottomRight: undefined }`
+- **Default:** `undefined`
 
 The values object has the following schema:
 
@@ -64,15 +58,3 @@ Callback function that is called when any border radius value changes.
 - **Default:** `() => {}`
 
 The function receives the updated values object as its argument.
-
-## Limitations
-
-The component has the following built-in constraints:
-
-- Minimum border radius value: 0
-- Maximum values by unit:
-  - px: 100
-  - em: 20
-  - rem: 20
-
-Please refer to the component's stories for more examples of usage.
