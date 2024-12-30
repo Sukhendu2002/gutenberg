@@ -11,6 +11,7 @@ import TabbedSidebar from '../';
 const meta = {
 	title: 'BlockEditor/TabbedSidebar',
 	component: TabbedSidebar,
+	tags: [ 'status-private' ],
 	parameters: {
 		docs: {
 			canvas: { sourceState: 'shown' },
@@ -80,18 +81,24 @@ const DEMO_TABS = [
 ];
 
 export const Default = {
-	render: function Template( args ) {
-		const [ selectedTab, setSelectedTab ] = useState( 'tab1' );
+	render: function Template( { onSelect, onClose, ...args } ) {
+		const [ selectedTab, setSelectedTab ] = useState();
 
 		return (
 			<TabbedSidebar
 				{ ...args }
-				tabs={ DEMO_TABS }
 				selectedTab={ selectedTab }
-				defaultTabId="tab1"
-				onSelect={ setSelectedTab }
-				closeButtonLabel="Close sidebar"
+				onSelect={ ( ...changeArgs ) => {
+					onSelect( ...changeArgs );
+					setSelectedTab( ...changeArgs );
+				} }
+				onClose={ onClose }
 			/>
 		);
+	},
+	args: {
+		tabs: DEMO_TABS,
+		defaultTabId: 'tab1',
+		closeButtonLabel: 'Close Sidebar',
 	},
 };

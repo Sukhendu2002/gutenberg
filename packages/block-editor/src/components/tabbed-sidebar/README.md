@@ -74,6 +74,7 @@ The ID of the currently selected tab.
 -   **Default:** `undefined`
 
 Array of tab objects. Each tab should have:
+
 - `name` (string): Unique identifier for the tab
 - `title` (string): Display title for the tab
 - `panel` (React.Node): Content to display in the tab panel
