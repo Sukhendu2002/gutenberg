@@ -79,8 +79,8 @@ function my_custom_navigation_link_variations( $variations, $block_type ) {
         'title'       => __( 'Custom Link', 'textdomain' ),
         'description' => __( 'A custom navigation link variation', 'textdomain' ),
         'attributes'  => array(
-            'type' => 'custom',
-            'kind' => 'custom',
+            'type' => 'custom', // Identifies the link type as custom
+            'kind' => 'custom', // Indicates the kind of link being used
         ),
 		'isDefault' => false,
     );
