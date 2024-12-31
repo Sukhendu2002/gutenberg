@@ -75,15 +75,15 @@ function my_custom_navigation_link_variations( $variations, $block_type ) {
 
     // Add a custom variation
     $variations[] = array(
-        'name'        => 'custom-link',
-        'title'       => __( 'Custom Link', 'textdomain' ),
-        'description' => __( 'A custom navigation link variation', 'textdomain' ),
-        'scope'       => array( 'inserter' ),
-	    'isDefault'   => false,
-        'attributes'  => array(
-            'type' => 'custom', // Identifies the link type as custom
-            'kind' => 'custom', // Indicates the kind of link being used
-        ),
+		'name'        => 'custom-link',
+		'title'       => __( 'Custom Link', 'textdomain' ),
+		'description' => __( 'A custom navigation link variation', 'textdomain' ),
+		'scope'       => array( 'inserter' ),
+		'isDefault'   => false,
+		'attributes'  => array(
+			'type' => 'custom', // Identifies the link type as custom
+			'kind' => 'custom', // Indicates the kind of link being used
+		),
     );
 
     return $variations;
