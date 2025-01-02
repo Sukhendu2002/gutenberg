@@ -55,7 +55,7 @@ const meta = {
 			description: 'The ID of the currently selected tab.',
 		},
 		tabs: {
-			control: { type: null },
+			control: { type: 'array' },
 			table: {
 				type: { summary: 'array' },
 			},
@@ -63,7 +63,7 @@ const meta = {
 				'Array of tab objects. Each tab should have: name (string), title (string), panel (React.Node), and optionally panelRef (React.Ref).',
 		},
 		closeButtonLabel: {
-			control: { type: null },
+			control: { type: 'text' },
 			table: {
 				type: { summary: 'string' },
 			},
