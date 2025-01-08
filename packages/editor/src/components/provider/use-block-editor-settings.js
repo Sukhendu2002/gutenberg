@@ -278,6 +278,7 @@ function useBlockEditorSettings( settings, postType, postId, renderingMode ) {
 
 	return useMemo( () => {
 		const blockEditorSettings = {
+			...settings,
 			...Object.fromEntries(
 				Object.entries( settings ).filter( ( [ key ] ) =>
 					BLOCK_EDITOR_SETTINGS.includes( key )
