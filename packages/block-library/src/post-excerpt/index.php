@@ -29,6 +29,7 @@ function render_block_core_post_excerpt( $attributes, $content, $block ) {
 	$excerpt_length = $attributes['excerptLength'];
 	$excerpt        = get_the_excerpt( $block->context['postId'] );
 	if ( isset( $excerpt_length ) ) {
+		$excerpt = preg_replace( '/^[\s]*>[\s]*/m', '', $excerpt );
 		$excerpt = wp_trim_words( $excerpt, $excerpt_length );
 	}
 
