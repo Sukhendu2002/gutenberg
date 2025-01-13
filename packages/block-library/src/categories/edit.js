@@ -195,6 +195,7 @@ export default function CategoriesEdit( {
 					label={ __( 'Settings' ) }
 					resetAll={ () => {
 						setAttributes( {
+							taxonomy: 'category',
 							displayAsDropdown: false,
 							showHierarchy: false,
 							showPostCounts: false,
@@ -208,17 +209,11 @@ export default function CategoriesEdit( {
 					{ Array.isArray( taxonomies ) && (
 						<ToolsPanelItem
 							hasValue={ () => {
-								return taxonomySlug !== 'category'
-									? taxonomySlug !== 'post_tag'
-									: taxonomySlug !== 'category';
+								return taxonomySlug !== 'category';
 							} }
 							label={ __( 'Taxonomy' ) }
 							onDeselect={ () => {
-								const defaultTaxonomy =
-									taxonomySlug !== 'category'
-										? 'post_tag'
-										: 'category';
-								setAttributes( { taxonomy: defaultTaxonomy } );
+								setAttributes( { taxonomy: 'category' } );
 							} }
 							isShownByDefault
 						>
@@ -240,7 +235,7 @@ export default function CategoriesEdit( {
 						</ToolsPanelItem>
 					) }
 					<ToolsPanelItem
-						hasValue={ () => displayAsDropdown !== false }
+						hasValue={ () => !! displayAsDropdown }
 						label={ __( 'Display as dropdown' ) }
 						onDeselect={ () =>
 							setAttributes( { displayAsDropdown: false } )
@@ -256,7 +251,7 @@ export default function CategoriesEdit( {
 					</ToolsPanelItem>
 					{ displayAsDropdown && (
 						<ToolsPanelItem
-							hasValue={ () => showLabel !== true }
+							hasValue={ () => ! showLabel }
 							label={ __( 'Show label' ) }
 							onDeselect={ () =>
 								setAttributes( { showLabel: true } )
@@ -273,7 +268,7 @@ export default function CategoriesEdit( {
 						</ToolsPanelItem>
 					) }
 					<ToolsPanelItem
-						hasValue={ () => showPostCounts !== false }
+						hasValue={ () => !! showPostCounts }
 						label={ __( 'Show post counts' ) }
 						onDeselect={ () =>
 							setAttributes( { showPostCounts: false } )
@@ -289,7 +284,7 @@ export default function CategoriesEdit( {
 					</ToolsPanelItem>
 					{ isHierarchicalTaxonomy && (
 						<ToolsPanelItem
-							hasValue={ () => showOnlyTopLevel !== false }
+							hasValue={ () => !! showOnlyTopLevel }
 							label={ __( 'Show only top level terms' ) }
 							onDeselect={ () =>
 								setAttributes( { showOnlyTopLevel: false } )
@@ -307,7 +302,7 @@ export default function CategoriesEdit( {
 						</ToolsPanelItem>
 					) }
 					<ToolsPanelItem
-						hasValue={ () => showEmpty !== false }
+						hasValue={ () => !! showEmpty }
 						label={ __( 'Show empty terms' ) }
 						onDeselect={ () =>
 							setAttributes( { showEmpty: false } )
@@ -323,7 +318,7 @@ export default function CategoriesEdit( {
 					</ToolsPanelItem>
 					{ isHierarchicalTaxonomy && ! showOnlyTopLevel && (
 						<ToolsPanelItem
-							hasValue={ () => showHierarchy !== false }
+							hasValue={ () => !! showHierarchy }
 							label={ __( 'Show hierarchy' ) }
 							onDeselect={ () =>
 								setAttributes( { showHierarchy: false } )
