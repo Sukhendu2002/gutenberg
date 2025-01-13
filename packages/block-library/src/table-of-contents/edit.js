@@ -120,7 +120,7 @@ export default function TableOfContentsEdit( {
 				dropdownMenuProps={ dropdownMenuProps }
 			>
 				<ToolsPanelItem
-					hasValue={ () => onlyIncludeCurrentPage !== false }
+					hasValue={ () => !! onlyIncludeCurrentPage }
 					label={ __( 'Only include current page' ) }
 					onDeselect={ () =>
 						setAttributes( { onlyIncludeCurrentPage: false } )
