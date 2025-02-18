@@ -64,31 +64,30 @@ wp.blocks.registerBlockVariation( 'core/embed', {
 
 Block variations can also be registered from PHP using the `get_block_type_variations` filter hook. This approach is particularly useful when you need to dynamically generate variations based on registered post types, taxonomies, or other WordPress data.
 
-Here's an example of how to register a custom variation for the `core/navigation-link` block:
+Here's an example of how to register a custom variation for the `core/image` block:
 
 ```php
-function my_custom_navigation_link_variations( $variations, $block_type ) {
-    // Only modify variations for the navigation-link block
-    if ( 'core/navigation-link' !== $block_type->name ) {
+function my_custom_image_variation( $variations, $block_type ) {
+    // Only modify variations for the image block
+    if ( 'core/image' !== $block_type->name ) {
         return $variations;
     }
 
     // Add a custom variation
     $variations[] = array(
-		'name'        => 'custom-link',
-		'title'       => __( 'Custom Link', 'textdomain' ),
-		'description' => __( 'A custom navigation link variation', 'textdomain' ),
+		'name'        => 'wide-image',
+		'title'       => __( 'Wide image', 'textdomain' ),
+		'description' => __( 'A wide image', 'textdomain' ),
 		'scope'       => array( 'inserter' ),
 		'isDefault'   => false,
 		'attributes'  => array(
-			'type' => 'custom', // Identifies the link type as custom
-			'kind' => 'custom', // Indicates the kind of link being used
+			'align' => 'wide', // Identifies the link type as custom
 		),
     );
 
     return $variations;
 }
-add_filter( 'get_block_type_variations', 'my_custom_navigation_link_variations', 10, 2 );
+add_filter( 'get_block_type_variations', 'my_custom_image_variation', 10, 2 );
 ```
 
 The `get_block_type_variations` filter is called when variations are requested for a block type. It receives two parameters:
