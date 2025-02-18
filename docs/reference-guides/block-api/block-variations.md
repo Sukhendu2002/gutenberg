@@ -96,6 +96,8 @@ The `get_block_type_variations` filter is called when variations are requested f
 
 Note that variations registered through PHP will be merged with any variations registered through JavaScript using `registerBlockVariation()`.
 
+<div class="callout callout-info">Check the <a href="https://developer.wordpress.org/news/2024/03/how-to-register-block-variations-with-php/">How to register block variations with PHP</a> blog post for more info about this</div>
+
 ## Removing a block variation
 
 Block variations can also be easily removed. To do so, use `wp.blocks.unregisterBlockVariation()`. This function accepts the name of the block and the `name` of the variation that should be unregistered.
