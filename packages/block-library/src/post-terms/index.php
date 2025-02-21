@@ -26,7 +26,7 @@ function render_block_core_post_terms( $attributes, $content, $block ) {
 
 	$classes = array(
 		'wp-block-post-terms',
-		'taxonomy-' . $attributes['term']
+		'taxonomy-' . $attributes['term'],
 	);
 
 	if ( isset( $attributes['textAlign'] ) ) {
@@ -44,7 +44,7 @@ function render_block_core_post_terms( $attributes, $content, $block ) {
 	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) );
 
 	$separator = empty( $attributes['separator'] ) ? ' ' : $attributes['separator'];
-	$prefix = '<div ' . $wrapper_attributes . '>';
+	$prefix    = '<div ' . $wrapper_attributes . '>';
 
 	if ( isset( $attributes['prefix'] ) && $attributes['prefix'] ) {
 		$prefix .= '<span class="wp-block-post-terms__prefix">' . $attributes['prefix'] . '</span>';
