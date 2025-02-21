@@ -5,4 +5,12 @@
 	.wp-block-post-terms__separator {
 		white-space: pre-wrap;
 	}
+
+	&.has-disabled-links {
+		a {
+			pointer-events: none;
+			cursor: default;
+			text-decoration: none;
+		}
+	}
 }

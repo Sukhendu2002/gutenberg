@@ -24,19 +24,28 @@ function render_block_core_post_terms( $attributes, $content, $block ) {
 		return '';
 	}
 
-	$classes = array( 'taxonomy-' . $attributes['term'] );
+	$classes = array(
+		'wp-block-post-terms',
+		'taxonomy-' . $attributes['term']
+	);
+
 	if ( isset( $attributes['textAlign'] ) ) {
 		$classes[] = 'has-text-align-' . $attributes['textAlign'];
 	}
+
+	if ( isset( $attributes['isLinkDisabled'] ) && $attributes['isLinkDisabled'] ) {
+		$classes[] = 'has-disabled-links';
+	}
+
 	if ( isset( $attributes['style']['elements']['link']['color']['text'] ) ) {
 		$classes[] = 'has-link-color';
 	}
 
-	$separator = empty( $attributes['separator'] ) ? ' ' : $attributes['separator'];
-
 	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) );
 
-	$prefix = "<div $wrapper_attributes>";
+	$separator = empty( $attributes['separator'] ) ? ' ' : $attributes['separator'];
+	$prefix = '<div ' . $wrapper_attributes . '>';
+
 	if ( isset( $attributes['prefix'] ) && $attributes['prefix'] ) {
 		$prefix .= '<span class="wp-block-post-terms__prefix">' . $attributes['prefix'] . '</span>';
 	}
@@ -44,21 +53,6 @@ function render_block_core_post_terms( $attributes, $content, $block ) {
 	$suffix = '</div>';
 	if ( isset( $attributes['suffix'] ) && $attributes['suffix'] ) {
 		$suffix = '<span class="wp-block-post-terms__suffix">' . $attributes['suffix'] . '</span>' . $suffix;
-	}
-
-	// If links are disabled, get terms and render them without links.
-	if ( isset( $attributes['isLinkDisabled'] ) && $attributes['isLinkDisabled'] ) {
-		$terms = get_the_terms( $block->context['postId'], $attributes['term'] );
-		if ( is_wp_error( $terms ) || empty( $terms ) ) {
-			return '';
-		}
-
-		$term_links = array();
-		foreach ( $terms as $term ) {
-			$term_links[] = '<span class="wp-block-post-terms__term">' . esc_html( $term->name ) . '</span>';
-		}
-
-		return $prefix . join( '<span class="wp-block-post-terms__separator">' . esc_html( $separator ) . '</span>', $term_links ) . $suffix;
 	}
 
 	$post_terms = get_the_term_list(
