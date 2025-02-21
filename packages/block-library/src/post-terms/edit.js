@@ -15,7 +15,7 @@ import {
 	RichText,
 } from '@wordpress/block-editor';
 import { createBlock, getDefaultBlockName } from '@wordpress/blocks';
-import { Spinner, TextControl } from '@wordpress/components';
+import { Spinner, TextControl, ToggleControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
@@ -44,7 +44,8 @@ export default function PostTermsEdit( {
 	setAttributes,
 	insertBlocksAfter,
 } ) {
-	const { term, textAlign, separator, prefix, suffix } = attributes;
+	const { term, textAlign, separator, prefix, suffix, isLinkDisabled } =
+		attributes;
 	const { postId, postType } = context;
 
 	const selectedTerm = useSelect(
@@ -93,6 +94,15 @@ export default function PostTermsEdit( {
 					} }
 					help={ __( 'Enter character(s) used to separate terms.' ) }
 				/>
+				<ToggleControl
+					__nextHasNoMarginBottom
+					label={ __( 'Disable links' ) }
+					checked={ !! isLinkDisabled }
+					onChange={ () =>
+						setAttributes( { isLinkDisabled: ! isLinkDisabled } )
+					}
+					help={ __( 'Display terms as plain text without links.' ) }
+				/>
 			</InspectorControls>
 			<div { ...blockProps }>
 				{ isLoading && hasPost && <Spinner /> }
@@ -117,16 +127,27 @@ export default function PostTermsEdit( {
 					! isLoading &&
 					hasPostTerms &&
 					postTerms
-						.map( ( postTerm ) => (
-							<a
-								key={ postTerm.id }
-								href={ postTerm.link }
-								onClick={ ( event ) => event.preventDefault() }
-								rel="tag"
-							>
-								{ decodeEntities( postTerm.name ) }
-							</a>
-						) )
+						.map( ( postTerm ) =>
+							isLinkDisabled ? (
+								<span
+									key={ postTerm.id }
+									className="wp-block-post-terms__term"
+								>
+									{ decodeEntities( postTerm.name ) }
+								</span>
+							) : (
+								<a
+									key={ postTerm.id }
+									href={ postTerm.link }
+									onClick={ ( event ) =>
+										event.preventDefault()
+									}
+									rel="tag"
+								>
+									{ decodeEntities( postTerm.name ) }
+								</a>
+							)
+						)
 						.reduce( ( prev, curr ) => (
 							<>
 								{ prev }

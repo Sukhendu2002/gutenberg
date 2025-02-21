@@ -24,6 +24,10 @@
 		"suffix": {
 			"type": "string",
 			"default": ""
+		},
+		"isLinkDisabled": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"usesContext": [ "postId", "postType" ],
