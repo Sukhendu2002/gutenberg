@@ -121,6 +121,11 @@ export default function useSelectionObserver() {
 					return;
 				}
 
+				const { activeElement } = node.ownerDocument;
+				if ( activeElement && ! node.contains( activeElement ) ) {
+					return;
+				}
+
 				const startNode = extractSelectionStartNode( selection );
 				const endNode = extractSelectionEndNode( selection );
 
